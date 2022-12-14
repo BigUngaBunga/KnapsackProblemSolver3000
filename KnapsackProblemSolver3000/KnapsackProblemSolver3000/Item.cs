@@ -12,6 +12,7 @@ namespace KnapsackProblemSolver3000
         public float Weight => weight;
         public float Value => value;
         public float ComparativeValue => comparativeValue;
+        public string ToString => $"Value {Value}, Weight {Weight}, Comparative Value {ComparativeValue}";
 
         public Item (float weight, float value)
         {
@@ -20,7 +21,6 @@ namespace KnapsackProblemSolver3000
             comparativeValue = value / weight;
         }
 
-        public string ToString() => $"Value {Value}, Weight {Weight}, Comparative Value {ComparativeValue}";
 
         public int CompareTo(object? obj)
         {
