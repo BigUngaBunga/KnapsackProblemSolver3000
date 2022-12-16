@@ -9,10 +9,14 @@ int numberOfKnapsacks = 10;
 float minWeight = 1f, maxWeight = 8f;
 float minValue = 1f, maxValue = 21f;
 
-CreateItems();
-InitializeKnapsacks();
-FillKnapsacks();
-ImprovingSearch();
+Console.WriteLine("Do you want to start a manual search? (yes/no)");
+var answer = Console.ReadLine().ToLower();
+if(answer.Equals("yes") || answer.Equals("yepp") || answer.Equals("ja") || answer.Equals("ok") || answer.Equals("true") || answer.Equals("y") || answer.Equals("ye"))
+    StartManualSearch();
+else
+    StartRandomSearch();
+
+
 
 Console.WriteLine("\nFinal outcome");
 //PrintItems();
@@ -21,6 +25,43 @@ PrintKnapsacks();
 Item GetRandomItem() => new Item(GetRandomFloat(minWeight, maxWeight), GetRandomFloat(minValue, maxValue));
 
 float GetRandomFloat(float min, float max) => min + (float)random.NextDouble() * (max - min);
+
+void StartRandomSearch()
+{
+    CreateItems();
+    InitializeKnapsacks();
+    ImprovingSearch();
+}
+
+void StartManualSearch()
+{
+    items = new List<Item>()
+    {
+        new Item(4, 5),
+        new Item(1, 2),
+        new Item(1, 6),
+        new Item(4, 5),
+        new Item(2, 5),
+        new Item(5, 2),
+        new Item(2, 4),
+        new Item(4, 6),
+        new Item(3, 4),
+        new Item(2, 2),
+        new Item(2, 3),
+        new Item(5, 6),
+        new Item(2, 1),
+    };
+    items.Sort();
+
+    knapsacks.Add(new Knapsack(15));
+    knapsacks.Add(new Knapsack(12));
+
+    PrintItems();
+
+    ImprovingSearch();
+
+    PrintItems();
+}
 
 void CreateItems()
 {
@@ -63,6 +104,7 @@ void ImprovingSearch()
     int changes = 1;
     while (changes > 0)
     {
+        FillKnapsacks();
         changes = 0;
         for (int i = 0; i < knapsacks.Count; i++)
         {
@@ -71,7 +113,6 @@ void ImprovingSearch()
                 while (FindBestSwap(knapsacks[i], knapsacks[j])) { changes++; }
             }
         }
-        FillKnapsacks();
     }
 
 }
