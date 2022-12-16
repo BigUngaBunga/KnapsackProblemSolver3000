@@ -12,7 +12,7 @@ namespace KnapsackProblemSolver3000
         public float Weight => weight;
         public float Value => value;
         public float ComparativeValue => comparativeValue;
-        public string ToString => $"Value {Value}, Weight {Weight}, Comparative Value {ComparativeValue}";
+        public string ToString => $"Value {Math.Round(Value, 1)}, Weight {Math.Round(Weight, 1)}, Comparative Value {Math.Round(ComparativeValue, 2)}";
 
         public Item (float weight, float value)
         {

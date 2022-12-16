@@ -13,10 +13,12 @@ namespace KnapsackProblemSolver3000
         private float currentWeight;
         private float currentValue;
 
+        public List<Item> Items => items;
         public float RemainingCapacity => weightCapacity - currentWeight;
         public float Value => currentValue;
         public float Weight => currentWeight;
-        public string ToString => $"The knapsack carries {items.Count} items weighing {Weight}, a total capacity of {weightCapacity} and with a total value of {Value}";
+        public string ToString => $"The knapsack carries {items.Count} items weighing {Math.Round(Weight, 1)}, a total capacity of {Math.Round(weightCapacity, 1)} " +
+            $"and with a total value of {Math.Round(Value, 1)}";
         
         public Knapsack(float capacity)
         {
@@ -52,6 +54,8 @@ namespace KnapsackProblemSolver3000
             }
             return false;
         }
+
+        public float CapacityIfSwapped(int itemIndex, Item swappingItem) => RemainingCapacity + items[itemIndex].Weight - swappingItem.Weight;
 
     }
 }
