@@ -1,1 +1,0 @@
-# KnapsackProblemSolver3000

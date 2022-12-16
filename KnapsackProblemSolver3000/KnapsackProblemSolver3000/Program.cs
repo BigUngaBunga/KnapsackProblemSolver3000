@@ -22,6 +22,8 @@ Console.WriteLine("\nFinal outcome");
 //PrintItems();
 PrintKnapsacks();
 
+Console.ReadLine();
+
 Item GetRandomItem() => new Item(GetRandomFloat(minWeight, maxWeight), GetRandomFloat(minValue, maxValue));
 
 float GetRandomFloat(float min, float max) => min + (float)random.NextDouble() * (max - min);
